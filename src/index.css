@@ -34,3 +34,11 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.primary-text {
+    color: var(--color-neutral-1);
+}
+
+.secondary-text {
+    color: var(--color-neutral-2);
+}
