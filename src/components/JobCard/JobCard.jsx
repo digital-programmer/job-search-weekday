@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 export const JobCard = ({ jobDetail }) => {
     const { logoUrl, companyName, jobRole, location, salaryCurrencyCode, minJdSalary, maxJdSalary, jobDetailsFromCompany, minExp, maxExp } = jobDetail;
+    const randomNum = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
     return <>
         <div className='job-card'>
             <div className="posting-date-time font-regular text-xs">
                 <span className="material-symbols-outlined text-sm font-medium">
                     trophy
                 </span>
-                Posted 10 days ago
+                Posted {randomNum} days ago
             </div>
             <div className="company-details">
                 <div className="company-img" style={{ backgroundImage: `url(${logoUrl})` }}>

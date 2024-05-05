@@ -1,5 +1,12 @@
-.job-card-container {
+.loader-container {
+    height: 100dvh;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    place-items: center;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
 }
