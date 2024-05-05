@@ -13,6 +13,7 @@ function App() {
 
   async function getLatestJobs() {
     try {
+      setLoading(true);
       const response = await getJobList();
       const result = await response.json();
       setJobList(result.jdList);
@@ -25,7 +26,6 @@ function App() {
   }
 
   useEffect(() => {
-    setLoading(true);
     (async function () {
       await getLatestJobs();
     })();
