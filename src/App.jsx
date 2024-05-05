@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react';
 import { getJobList } from './utils/helpers';
+import { JobCard } from './components/JobCard/JobCard';
 
 function App() {
   const [jobList, setJobList] = useState([]);
@@ -12,7 +13,6 @@ function App() {
       try {
         const response = await getJobList();
         const result = await response.json();
-        console.log(result);
         setJobList(result.jdList);
         setTotalJobCount(result.totalCount);
       } catch (err) {
@@ -24,7 +24,9 @@ function App() {
 
   return (
     <>
-      <div>{totalJobCount}</div>
+      <div className='job-card-container max-width-container'>
+        {jobList.map(item => <JobCard key={item.jdUid} jobDetail={item} />)}
+      </div>
     </>
   )
 }
