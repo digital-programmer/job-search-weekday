@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import './App.css'
 import { useEffect } from 'react';
 import { getJobList } from './utils/helpers';
@@ -14,7 +14,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [allDataFetched, setAllDataFetched] = useState(false);
 
-  async function getLatestJobs(filters = {}) {
+  const getLatestJobs = useCallback(async (filters = {}) => {
     if (allDataFetched || loading || nextPageLoading) {
       return;
     }
@@ -27,7 +27,7 @@ function App() {
       const response = await getJobList(filters, page);
       const result = await response.json();
       setJobList(prevArr => [...prevArr, ...result.jdList]);
-      setPage(prevPage => prevPage + 1);
+      setPage(page + 1);
       if (result.jdList.length === 0) {
         setAllDataFetched(true);
       }
@@ -43,13 +43,7 @@ function App() {
         setNextPageLoading(false);
       }
     }
-  }
-
-  async function handleScroll() {
-    if ((window.innerHeight + window.scrollY >= document.body.offsetHeight) && !loading && !nextPageLoading) {
-      await getLatestJobs();
-    }
-  }
+  }, [page, loading, nextPageLoading, allDataFetched])
 
   useEffect(() => {
     (async function () {
@@ -58,9 +52,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+    async function handleScroll() {
+      if ((window.innerHeight + window.scrollY >= document.body.offsetHeight) && !loading && !nextPageLoading) {
+        await getLatestJobs();
+      }
+    }
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loading, nextPageLoading]);
+  }, [getLatestJobs, loading, nextPageLoading]);
 
   if (loading) {
     return (
