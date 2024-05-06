@@ -53,7 +53,7 @@ function App() {
 
   useEffect(() => {
     async function handleScroll() {
-      if ((window.innerHeight + window.scrollY >= document.body.offsetHeight) && !loading && !nextPageLoading) {
+      if ((window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) && !loading && !nextPageLoading) {
         await getLatestJobs();
       }
     }
@@ -72,6 +72,7 @@ function App() {
   return (
     <>
       <div className='max-width-container'>
+        <h2 className='secondary-text font-black'>Total Jobs ({totalJobCount})</h2>
         <JobFilter />
         <div style={{ 'margin': "24px 0" }}></div>
         <JobCardContainer jobList={jobList} totalJobCount={totalJobCount} />
