@@ -5,7 +5,7 @@ import "./jobCardContainer.css";
 export const JobCardContainer = ({ jobList }) => {
     return (
         <div className='job-card-container'>
-            {jobList.map(item => <JobCard key={item.jdUid} jobDetail={item} />)}
+            {jobList.map((item, index) => <JobCard key={item.jdUid + '_' + index} jobDetail={item} />)}
         </div>
     )
 }
