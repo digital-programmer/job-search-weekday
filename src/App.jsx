@@ -73,6 +73,7 @@ function App() {
     <>
       <div className='max-width-container'>
         <JobFilter />
+        <div style={{ 'margin': "24px 0" }}></div>
         <JobCardContainer jobList={jobList} totalJobCount={totalJobCount} />
         {nextPageLoading &&
           <>

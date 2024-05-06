@@ -3,3 +3,21 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
 }
+
+
+@media screen and (max-width: 768px) {
+    .job-card-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .job-card-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
